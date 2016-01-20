@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (C) 2015-2016 apifocal LLC - https://www.apifocal.com
+
+    This source code is available under a license agreement available at
+    $HOME/LICENSE
+
+    You should have received a copy of the agreement along with this
+    program; if not, contact apifocal LLC.
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.apifocal</groupId>
+  <artifactId>apifocal-parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>apifocal parent</name>
+  <description>
+    apifocal LLC communities provide governance for a number of
+    open source projects in the cloud computing, integration and 
+    automation fields. 
+  </description>
+  <url>https://www.apifocal.org/</url>
+  <organization>
+    <name>apifocal LLC</name>
+    <url>https://www.apifocal.org/</url>
+  </organization>
+
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <!--
+  <scm />
+  <distributionManagement />
+  -->
+
+  <prerequisites>
+    <maven>3.0</maven><!-- prerequisite of some plugins -->
+  </prerequisites>
+
+  <properties>
+    <distMgmtSnapshotsName>apifocal Snapshot Repository</distMgmtSnapshotsName>
+    <distMgmtSnapshotsUrl>https://repository.apifocal.org/content/repositories/snapshots</distMgmtSnapshotsUrl>
+    <organization.logo>http://www.apifocal.org/images/logo.png</organization.logo>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
+    <gpg.useagent>true</gpg.useagent>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+
+    <!-- plugin versions -->
+  </properties>
+
+  <build>
+    <pluginManagement />
+  </build>
+
+  <profiles>
+    <profile>
+      <id>apifocal-release</id>
+      <build>
+	<!-- TBD -->
+      </build>
+    </profile>
+  </profiles>
+
+</project>
