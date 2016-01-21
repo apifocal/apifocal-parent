@@ -64,12 +64,46 @@
     <gpg.useagent>true</gpg.useagent>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+    <apifocal.compile.show.deprecation>true</apifocal.compile.show.deprecation>
+    <apifocal.compile.flags>-Xlint:unchecked,deprecation,fallthrough,finally</apifocal.compile.flags>
 
     <!-- plugin versions -->
+    <build-helper-maven-plugin.version>1.9.1</build-helper-maven-plugin.version>
+    <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
+    <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+    <swagger-codegen-maven-plugin.version>2.1.5</swagger-codegen-maven-plugin.version>
   </properties>
 
   <build>
-    <pluginManagement />
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven-compiler-plugin.version}</version>
+          <configuration>
+            <compilerArgument>${apifocal.compile.flags}</compilerArgument>
+            <showDeprecation>${apifocal.compile.show.deprecation}</showDeprecation>
+            <showWarnings>true</showWarnings>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>${build-helper-maven-plugin.version}</version>
+        </plugin>
+
+        <plugin>
+          <groupId>io.swagger</groupId>
+          <artifactId>swagger-codegen-maven-plugin</artifactId>
+          <version>${swagger-codegen-maven-plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+    </plugins>
   </build>
 
   <profiles>
