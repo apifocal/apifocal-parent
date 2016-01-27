@@ -50,7 +50,7 @@
   <distributionManagement>
       <repository>
           <id>apifocal-public</id>
-          <url>https://dev.cheepee.ro/archiva/repository/apifocal-public</url>
+          <url>http://dev.cheepee.ro/archiva/repository/apifocal-public</url>
       </repository>
   </distributionManagement>
 
