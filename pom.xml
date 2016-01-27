@@ -50,9 +50,35 @@
   <distributionManagement>
       <repository>
           <id>apifocal-public</id>
-          <url>http://dev.cheepee.ro/archiva/repository/apifocal-public</url>
+          <url>${apifocal.public.test.repo.url}</url>
       </repository>
   </distributionManagement>
+
+  <repositories>
+      <repository>
+          <id>apifocal-public</id>
+          <url>${apifocal.public.test.repo.url}</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+      </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>apifocal-public</id>
+      <url>${apifocal.public.test.repo.url}</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 
   <prerequisites>
     <maven>3.0</maven><!-- prerequisite of some plugins -->
@@ -62,6 +88,8 @@
     <distMgmtSnapshotsName>apifocal Snapshot Repository</distMgmtSnapshotsName>
     <distMgmtSnapshotsUrl>https://repository.apifocal.org/content/repositories/snapshots</distMgmtSnapshotsUrl>
     <organization.logo>http://www.apifocal.org/images/logo.png</organization.logo>
+
+    <apifocal.public.test.repo.url>http://dev.cheepee.ro/archiva/repository/apifocal-public</apifocal.public.test.repo.url>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
