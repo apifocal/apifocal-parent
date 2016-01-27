@@ -46,8 +46,13 @@
 
   <!--
   <scm />
-  <distributionManagement />
   -->
+  <distributionManagement>
+      <repository>
+          <id>apifocal-public</id>
+          <url>https://dev.cheepee.ro/archiva/repository/apifocal-public</url>
+      </repository>
+  </distributionManagement>
 
   <prerequisites>
     <maven>3.0</maven><!-- prerequisite of some plugins -->
