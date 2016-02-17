@@ -26,9 +26,7 @@
 
   <name>apifocal parent</name>
   <description>
-    apifocal LLC communities provide governance for a number of
-    open source projects in the cloud computing, integration and 
-    automation fields. 
+    Maven parent POM for apifocal LLC projects.
   </description>
   <url>https://www.apifocal.org/</url>
   <organization>
@@ -81,7 +79,7 @@
   </pluginRepositories>
 
   <prerequisites>
-    <maven>3.0</maven><!-- prerequisite of some plugins -->
+    <maven>3.0.0</maven>
   </prerequisites>
 
   <properties>
