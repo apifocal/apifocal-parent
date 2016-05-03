@@ -108,6 +108,7 @@
     <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     <maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version>
+    <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
     <swagger-codegen-maven-plugin.version>2.1.5</swagger-codegen-maven-plugin.version>
   </properties>
@@ -145,6 +146,14 @@
           <groupId>io.swagger</groupId>
           <artifactId>swagger-codegen-maven-plugin</artifactId>
           <version>${swagger-codegen-maven-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>${maven-release-plugin.version}</version>
+          <configuration>
+            <releaseProfiles>apifocal-release</releaseProfiles>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
