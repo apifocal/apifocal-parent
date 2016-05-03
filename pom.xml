@@ -14,14 +14,13 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.apifocal</groupId>
   <artifactId>apifocal-parent</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1</version>
   <packaging>pom</packaging>
 
   <name>apifocal parent</name>
@@ -45,7 +44,7 @@
   <scm>
       <connection>scm:git:git@github.com:apifocal/apifocal-parent.git</connection>
       <developerConnection>scm:git:git@github.com:apifocal/apifocal-parent.git</developerConnection>
-      <tag>HEAD</tag>
+      <tag>apifocal-parent-1</tag>
       <url>https://github.com/apifocal/apifocal-parent</url>
   </scm>
 
