@@ -96,8 +96,8 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <sourceReleaseAssemblyDescriptor>source-release</sourceReleaseAssemblyDescriptor>
     <gpg.useagent>true</gpg.useagent>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
     <apifocal.compile.show.deprecation>true</apifocal.compile.show.deprecation>
     <apifocal.compile.flags>-Xlint:unchecked,deprecation,fallthrough,finally</apifocal.compile.flags>
