@@ -168,6 +168,16 @@
 	<!-- TBD -->
       </build>
     </profile>
+    <profile>
+      <id>disable-javadoc-doclint</id>
+      <!-- see http://stackoverflow.com/questions/34354385/mvn-releaseperform-fails-in-java-8-added-javadoc-plugin -->
+      <activation>
+        <jdk>[1.8,)</jdk>
+      </activation>
+      <properties>
+        <additionalparam>-Xdoclint:none</additionalparam>
+      </properties>
+    </profile>
   </profiles>
 
 </project>
