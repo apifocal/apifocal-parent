@@ -50,9 +50,13 @@
 
   <distributionManagement>
       <repository>
-          <id>apifocal-public</id>
-          <url>${apifocal.public.test.repo.url}</url>
+          <id>apifocal-releases</id>
+          <url>${apifocal.releases.repo.url}</url>
       </repository>
+      <snapshotRepository>
+          <id>apifocal-snapshots</id>
+          <url>${apifocal.snapshots.repo.url}</url>
+      </snapshotRepository>
   </distributionManagement>
 
   <repositories>
@@ -61,6 +65,28 @@
           <url>${apifocal.public.test.repo.url}</url>
           <releases>
             <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+      </repository>
+      <repository>
+          <id>apifocal-releases</id>
+          <name>${apifocal.releases.repo.name}</name>
+          <url>${apifocal.releases.repo.url}</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+      </repository>
+      <repository>
+          <id>apifocal-snapshots</id>
+          <name>${apifocal.snapshots.repo.name}</name>
+          <url>${apifocal.snapshots.repo.url}</url>
+          <releases>
+            <enabled>false</enabled>
           </releases>
           <snapshots>
             <enabled>true</enabled>
@@ -79,6 +105,28 @@
         <enabled>true</enabled>
       </snapshots>
     </pluginRepository>
+    <pluginRepository>
+      <id>apifocal-releases</id>
+      <name>${apifocal.releases.repo.name}</name>
+      <url>${apifocal.releases.repo.url}</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>apifocal-snapshots</id>
+      <name>${apifocal.snapshots.repo.name}</name>
+      <url>${apifocal.snapshots.repo.url}</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </pluginRepository>
   </pluginRepositories>
 
   <prerequisites>
@@ -86,11 +134,15 @@
   </prerequisites>
 
   <properties>
-    <distMgmtSnapshotsName>apifocal Snapshot Repository</distMgmtSnapshotsName>
-    <distMgmtSnapshotsUrl>https://repository.apifocal.org/content/repositories/snapshots</distMgmtSnapshotsUrl>
-    <organization.logo>http://www.apifocal.org/images/logo.png</organization.logo>
+    <organization.logo>https://www.apifocal.org/img/logo.png</organization.logo>
 
     <apifocal.public.test.repo.url>http://dev.cheepee.ro/archiva/repository/apifocal-public</apifocal.public.test.repo.url>
+    
+    <apifocal.releases.repo.name>Apifocal Releases</apifocal.releases.repo.name>
+    <apifocal.releases.repo.url>https://archiva.apifocal.org/repository/apifocal-releases</apifocal.releases.repo.url>
+
+    <apifocal.snapshots.repo.name>Apifocal Snapshots</apifocal.snapshots.repo.name>
+    <apifocal.snapshots.repo.url>https://archiva.apifocal.org/repository/apifocal-snapshots</apifocal.snapshots.repo.url>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
