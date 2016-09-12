@@ -61,16 +61,6 @@
 
   <repositories>
       <repository>
-          <id>apifocal-public</id>
-          <url>${apifocal.public.test.repo.url}</url>
-          <releases>
-            <enabled>true</enabled>
-          </releases>
-          <snapshots>
-            <enabled>true</enabled>
-          </snapshots>
-      </repository>
-      <repository>
           <id>apifocal-releases</id>
           <name>${apifocal.releases.repo.name}</name>
           <url>${apifocal.releases.repo.url}</url>
@@ -95,16 +85,6 @@
   </repositories>
 
   <pluginRepositories>
-    <pluginRepository>
-      <id>apifocal-public</id>
-      <url>${apifocal.public.test.repo.url}</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
     <pluginRepository>
       <id>apifocal-releases</id>
       <name>${apifocal.releases.repo.name}</name>
@@ -136,8 +116,6 @@
   <properties>
     <organization.logo>https://www.apifocal.org/img/logo.png</organization.logo>
 
-    <apifocal.public.test.repo.url>http://dev.cheepee.ro/archiva/repository/apifocal-public</apifocal.public.test.repo.url>
-    
     <apifocal.releases.repo.name>Apifocal Releases</apifocal.releases.repo.name>
     <apifocal.releases.repo.url>https://archiva.apifocal.org/repository/apifocal-releases</apifocal.releases.repo.url>
 
