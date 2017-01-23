@@ -116,10 +116,10 @@
     <properties>
         <organization.logo>https://www.apifocal.org/img/logo.png</organization.logo>
 
-        <apifocal.releases.repo.name>Apifocal Releases</apifocal.releases.repo.name>
+        <apifocal.releases.repo.name>apifocal releases</apifocal.releases.repo.name>
         <apifocal.releases.repo.url>https://archiva.apifocal.org/repository/apifocal-releases</apifocal.releases.repo.url>
 
-        <apifocal.snapshots.repo.name>Apifocal Snapshots</apifocal.snapshots.repo.name>
+        <apifocal.snapshots.repo.name>apifocal snapshots</apifocal.snapshots.repo.name>
         <apifocal.snapshots.repo.url>https://archiva.apifocal.org/repository/apifocal-snapshots</apifocal.snapshots.repo.url>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
