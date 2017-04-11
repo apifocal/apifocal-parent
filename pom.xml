@@ -110,7 +110,7 @@
     </pluginRepositories>
 
     <prerequisites>
-        <maven>3.0.0</maven>
+        <maven>3.3.9</maven>
     </prerequisites>
 
     <properties>
@@ -133,7 +133,9 @@
         <apifocal.compile.flags>-Xlint:unchecked,deprecation,fallthrough,finally</apifocal.compile.flags>
 
         <!-- plugin versions -->
+        <bom-maven-plugin.version>0.2.0-SNAPSHOT</bom-maven-plugin.version>
         <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
+        <exec-maven-plugin.version>1.2.1</exec-maven-plugin.version>
         <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
         <maven-bundle-plugin.version>3.0.1</maven-bundle-plugin.version>
         <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
@@ -222,6 +224,12 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apifocal.maven.plugins</groupId>
+                    <artifactId>bom-maven-plugin</artifactId>
+                    <version>${bom-maven-plugin.version}</version>
                 </plugin>
 
                 <plugin>
