@@ -47,6 +47,10 @@
         <tag>HEAD</tag>
         <url>https://github.com/apifocal/apifocal-parent</url>
     </scm>
+    <ciManagement>
+        <system>Jenkins</system>
+        <url>https://jenkins.apifocal.org/job/Dev/job/apifocal-parent/</url>
+    </ciManagement>
 
     <distributionManagement>
         <repository>
