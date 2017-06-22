@@ -143,9 +143,11 @@
         <exec-maven-plugin.version>1.2.1</exec-maven-plugin.version>
         <karaf-maven-plugin.version>4.0.8</karaf-maven-plugin.version>
         <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
+        <maven-assembly-plugin.version>3.0.0</maven-assembly-plugin.version>
         <maven-bundle-plugin.version>3.0.1</maven-bundle-plugin.version>
         <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <maven-dependency-plugin.version>3.0.1</maven-dependency-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
         <maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version> <!-- we need <2.19 for netbeans -->
         <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
@@ -178,6 +180,16 @@
                     <artifactId>karaf-maven-plugin</artifactId>
                     <version>${karaf-maven-plugin.version}</version>
                     <extensions>true</extensions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${maven-assembly-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${maven-dependency-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
