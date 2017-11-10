@@ -82,7 +82,7 @@
             <releases>
                 <enabled>false</enabled>
             </releases>
-            <snapshots>
+             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
         </repository>
@@ -135,9 +135,11 @@
         <!-- plugin versions -->
         <bom-maven-plugin.version>0.2.0</bom-maven-plugin.version>
         <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
+        <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
         <camel-maven-plugin.version>2.17.5</camel-maven-plugin.version>
         <depends-maven-plugin.version>1.4.0</depends-maven-plugin.version>
         <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
+        <git-commit-id-plugin.version>2.2.3</git-commit-id-plugin.version>
         <karaf-maven-plugin.version>4.0.8</karaf-maven-plugin.version>
         <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
         <maven-assembly-plugin.version>3.0.0</maven-assembly-plugin.version>
@@ -148,6 +150,7 @@
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
         <maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version> <!-- we need <2.19 for netbeans -->
         <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+        <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
         <maven-plugin-plugin.version>3.5</maven-plugin-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <maven-remote-resource-plugin.version>1.5</maven-remote-resource-plugin.version>
@@ -219,6 +222,24 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>pl.project13.maven</groupId>
+                    <artifactId>git-commit-id-plugin</artifactId>
+                    <version>${git-commit-id-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>revision</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <verbose>true</verbose>
+                        <dateFormat>yyyy-MM-dd'T'HH:mm:ssZ</dateFormat>
+                        <generateGitPropertiesFile>true</generateGitPropertiesFile>
+                        <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-failsafe-plugin</artifactId>
                     <version>${maven-failsafe-plugin.version}</version>
@@ -227,6 +248,11 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-install-plugin</artifactId>
                     <version>${maven-install-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${maven-jar-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -279,6 +305,11 @@
                 </plugin>
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>buildnumber-maven-plugin</artifactId>
+                    <version>${buildnumber-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
                     <artifactId>properties-maven-plugin</artifactId>
                     <version>${properties-maven-plugin.version}</version>
                 </plugin>
@@ -293,30 +324,79 @@
         </pluginManagement>
 
         <plugins>
-          <!-- enforce minimum ma -->
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-enforcer-plugin</artifactId>
-            <version>3.0.0-M1</version>
-            <executions>
-              <execution>
-                <id>enforce-versions</id>
-                <goals>
-                  <goal>enforce</goal>
-                </goals>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
-                  <rules>
-                    <requireMavenVersion>
-                      <version>3.3.9</version>
-                    </requireMavenVersion>
-                    <requireJavaVersion>
-                      <version>1.8</version>
-                    </requireJavaVersion>
-                  </rules>
+                    <!--
+                     doCheck and doUpdate actually talk to repository if it's true,
+                     Check would check that there are no local changes.
+                    -->
+                    <!-- override this on command line when releasing                -->
+                    <!-- -Dmaven.buildNumber.doCheck=true                           -->
+                    <doCheck>false</doCheck>
+
+                    <!-- if true update the buildnumber with the latest scm revision -->
+                    <!-- override this on command line when releasing                -->
+                    <!-- -Dmaven.buildNumber.doUpdate=true                           -->
+                    <doUpdate>false</doUpdate>
+
+                    <!-- same scm revision for all modules -->
+                    <getRevisionOnlyOnce>true</getRevisionOnlyOnce>
+
+                    <!-- if no scm available use this string - prevents exception -->
+                    <revisionOnScmFailure>NOREVISION</revisionOnScmFailure>
+
+                    <timestampFormat>{0,date,yyyy-MM-dd hh:mm:ss}</timestampFormat>
                 </configuration>
-              </execution>
-            </executions>
-          </plugin>
+            </plugin>
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifestEntries>
+                            <Implementation-Version>${project.version} Build: ${revision} Timestamp: ${maven.build.timestamp}</Implementation-Version>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireMavenVersion>
+                                    <version>3.3.9</version>
+                                </requireMavenVersion>
+                                <requireJavaVersion>
+                                    <version>1.8</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
