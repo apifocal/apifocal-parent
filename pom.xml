@@ -14,7 +14,9 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -29,7 +31,7 @@
     </description>
     <url>https://www.apifocal.org/</url>
     <organization>
-        <name>apifocal LLC</name>
+        <name>apifocal</name>
         <url>https://www.apifocal.org/</url>
     </organization>
 
@@ -47,19 +49,15 @@
         <tag>HEAD</tag>
         <url>https://github.com/apifocal/apifocal-parent</url>
     </scm>
-    <ciManagement>
-        <system>Jenkins</system>
-        <url>https://jenkins.apifocal.org/job/Dev/job/apifocal-parent/</url>
-    </ciManagement>
 
     <distributionManagement>
         <repository>
-            <id>apifocal-releases</id>
-            <url>${apifocal.releases.repo.url}</url>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
         <snapshotRepository>
-            <id>apifocal-snapshots</id>
-            <url>${apifocal.snapshots.repo.url}</url>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
 
@@ -118,7 +116,6 @@
 
         <apifocal.releases.repo.name>apifocal releases</apifocal.releases.repo.name>
         <apifocal.releases.repo.url>https://archiva.apifocal.org/repository/apifocal-releases</apifocal.releases.repo.url>
-
         <apifocal.snapshots.repo.name>apifocal snapshots</apifocal.snapshots.repo.name>
         <apifocal.snapshots.repo.url>https://archiva.apifocal.org/repository/apifocal-snapshots</apifocal.snapshots.repo.url>
 
@@ -136,7 +133,6 @@
         <bom-maven-plugin.version>0.2.0</bom-maven-plugin.version>
         <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
         <buildnumber-maven-plugin.version>1.4</buildnumber-maven-plugin.version>
-        <camel-maven-plugin.version>2.17.5</camel-maven-plugin.version>
         <depends-maven-plugin.version>1.4.0</depends-maven-plugin.version>
         <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
         <git-commit-id-plugin.version>2.2.3</git-commit-id-plugin.version>
@@ -148,6 +144,7 @@
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <maven-dependency-plugin.version>3.0.1</maven-dependency-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
         <maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version> <!-- we need <2.19 for netbeans -->
         <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
         <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
@@ -157,19 +154,14 @@
         <maven-resource-plugin.version>3.0.2</maven-resource-plugin.version>
         <maven-site-plugin.version>3.5.1</maven-site-plugin.version>
         <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version> <!-- we need <2.19 for netbeans -->
+        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
         <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
-        <swagger-codegen-maven-plugin.version>2.2.0</swagger-codegen-maven-plugin.version>
     </properties>
 
     <build>
         <pluginManagement>
             <plugins>
                 <!-- TODO: organize alphabetically -->
-                <plugin>
-                    <groupId>org.apache.camel</groupId>
-                    <artifactId>camel-maven-plugin</artifactId>
-                    <version>${camel-maven-plugin.version}</version>
-                </plugin>
                 <plugin>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
@@ -212,7 +204,6 @@
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>${maven-deploy-plugin.version}</version>
                 </plugin>
-                <!-- exec-maven-plugin -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
@@ -314,12 +305,6 @@
                     <version>${properties-maven-plugin.version}</version>
                 </plugin>
 
-                <plugin>
-                    <groupId>io.swagger</groupId>
-                    <artifactId>swagger-codegen-maven-plugin</artifactId>
-                    <version>${swagger-codegen-maven-plugin.version}</version>
-                </plugin>
-
             </plugins>
         </pluginManagement>
 
@@ -377,7 +362,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M1</version>
+                <version>${maven-enforcer-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>enforce-versions</id>
@@ -397,6 +382,17 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus-staging-maven-plugin.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -405,6 +401,22 @@
             <id>apifocal-release</id>
             <build>
                 <!-- TBD -->
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
             </build>
         </profile>
         <profile>
