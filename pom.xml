@@ -20,7 +20,7 @@
 
     <groupId>org.apifocal</groupId>
     <artifactId>apifocal-parent</artifactId>
-    <version>9-SNAPSHOT</version>
+    <version>9</version>
     <packaging>pom</packaging>
 
     <name>apifocal parent</name>
@@ -44,7 +44,7 @@
     <scm>
         <connection>scm:git:git@github.com:apifocal/apifocal-parent.git</connection>
         <developerConnection>scm:git:git@github.com:apifocal/apifocal-parent.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>apifocal-parent-9</tag>
         <url>https://github.com/apifocal/apifocal-parent</url>
     </scm>
     <ciManagement>
