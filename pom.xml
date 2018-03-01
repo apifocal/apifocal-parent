@@ -237,10 +237,6 @@
                         <generateGitPropertiesFile>true</generateGitPropertiesFile>
                         <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
                         <injectAllReactorProjects>true</injectAllReactorProjects>
-                        <includeOnlyProperties>
-                            <include>git.commit.id</include>
-                            <include>git.commit.id.abbrev</include>
-                        </includeOnlyProperties>
                     </configuration>
                 </plugin>
                 <plugin>
