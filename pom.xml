@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-    Copyright (C) 2015-2016 apifocal LLC - https://www.apifocal.com
+    Copyright (C) 2015-2020 apifocal LLC - https://www.apifocal.com
 
     This source code is available under a license agreement available at
     $HOME/LICENSE
@@ -48,8 +48,9 @@
         <url>https://github.com/apifocal/apifocal-parent</url>
     </scm>
     <ciManagement>
-        <system>Jenkins</system>
-        <url>https://jenkins.apifocal.org/job/Dev/job/apifocal-parent/</url>
+        <system>gitlab</system>
+        <!-- FIXME: create pipeline and update URL below -->
+        <url>https://git.apifocal.org/mirror/apifocal-parent/pipelines</url>
     </ciManagement>
 
     <distributionManagement>
@@ -134,53 +135,35 @@
 
         <!-- plugin versions -->
         <bom-maven-plugin.version>0.2.0</bom-maven-plugin.version>
-        <build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
-        <camel-maven-plugin.version>2.17.5</camel-maven-plugin.version>
+        <build-helper-maven-plugin.version>3.1.0</build-helper-maven-plugin.version>
         <depends-maven-plugin.version>1.4.0</depends-maven-plugin.version>
         <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
-        <git-commit-id-plugin.version>2.2.4</git-commit-id-plugin.version>
-        <karaf-maven-plugin.version>4.0.8</karaf-maven-plugin.version>
+        <git-commit-id-plugin.version>4.0.0</git-commit-id-plugin.version>
         <lifecycle-mapping.version>1.0.0</lifecycle-mapping.version>
-        <maven-assembly-plugin.version>3.0.0</maven-assembly-plugin.version>
+        <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
         <maven-bundle-plugin.version>3.0.1</maven-bundle-plugin.version>
-        <maven-clean-plugin.version>3.0.0</maven-clean-plugin.version>
-        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
-        <maven-dependency-plugin.version>3.0.1</maven-dependency-plugin.version>
-        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
-        <maven-failsafe-plugin.version>2.18.1</maven-failsafe-plugin.version> <!-- we need <2.19 for netbeans -->
-        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
-        <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
-        <maven-plugin-plugin.version>3.5</maven-plugin-plugin.version>
-        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-        <maven-remote-resource-plugin.version>1.5</maven-remote-resource-plugin.version>
-        <maven-resource-plugin.version>3.0.2</maven-resource-plugin.version>
-        <maven-site-plugin.version>3.5.1</maven-site-plugin.version>
-        <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version> <!-- we need <2.19 for netbeans -->
+        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-dependency-plugin.version>3.1.2</maven-dependency-plugin.version>
+        <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
+        <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M4</maven-failsafe-plugin.version> <!-- we need <2.19 for netbeans -->
+        <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
+        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
+        <maven-plugin-plugin.version>3.6.0</maven-plugin-plugin.version>
+        <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
+        <maven-remote-resource-plugin.version>1.7.0</maven-remote-resource-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+        <maven-site-plugin.version>3.9.o</maven-site-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
-        <swagger-codegen-maven-plugin.version>2.2.0</swagger-codegen-maven-plugin.version>
+        <swagger-codegen-maven-plugin.version>3.0.0-rc1</swagger-codegen-maven-plugin.version>
     </properties>
 
     <build>
         <pluginManagement>
             <plugins>
                 <!-- TODO: organize alphabetically -->
-                <plugin>
-                    <groupId>org.apache.camel</groupId>
-                    <artifactId>camel-maven-plugin</artifactId>
-                    <version>${camel-maven-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>maven-bundle-plugin</artifactId>
-                    <version>${maven-bundle-plugin.version}</version>
-                    <extensions>true</extensions>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.karaf.tooling</groupId>
-                    <artifactId>karaf-maven-plugin</artifactId>
-                    <version>${karaf-maven-plugin.version}</version>
-                    <extensions>true</extensions>
-                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
@@ -210,6 +193,11 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>${maven-deploy-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-enforcer-plugin</artifactId>
+                    <version>${maven-enforcer-plugin.version}</version>
                 </plugin>
                 <!-- exec-maven-plugin -->
                 <plugin>
@@ -273,7 +261,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>${maven-resource-plugin.version}</version>
+                    <version>${maven-resources-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -337,7 +325,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
-                <version>3.0.0-M1</version>
                 <executions>
                     <execution>
                         <id>enforce-versions</id>

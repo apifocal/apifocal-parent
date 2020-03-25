@@ -1,2 +1,3 @@
 # apifocal-parent
-apifocal parent pom
+
+Parent POM for apifocal projects.
