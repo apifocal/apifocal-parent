@@ -154,7 +154,7 @@
         <maven-release-plugin.version>3.0.0-M1</maven-release-plugin.version>
         <maven-remote-resource-plugin.version>1.7.0</maven-remote-resource-plugin.version>
         <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
-        <maven-site-plugin.version>3.9.o</maven-site-plugin.version>
+        <maven-site-plugin.version>3.9.0</maven-site-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M4</maven-surefire-plugin.version>
         <properties-maven-plugin.version>1.0.0</properties-maven-plugin.version>
         <swagger-codegen-maven-plugin.version>3.0.0-rc1</swagger-codegen-maven-plugin.version>
